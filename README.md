@@ -1,75 +1,90 @@
-# HealthConnect Clinic: Reducing Patient Appointment No-Shows
+# HealthConnect Clinic: Data Analytics Project
 
-## AnalystLab Africa Experience Lab (Data Analytics Track)
+## Overview
 
-### Project Overview
-HealthConnect Clinic is an outpatient healthcare provider managing appointment-based services that experiences a critical attendance deficit (48.5% no-show rate across 5,000 scheduled visits)[cite: 1, 5]. This project applies structured data analytics to identify the primary drivers of missed appointments, establish measurable Key Performance Indicators (KPIs), resolve behavioral anomalies, model capacity recapture policies, and provide actionable operational recommendations to reclaim clinical slot capacity[cite: 1, 5, 7].
+HealthConnect Clinic is a fictional healthcare provider facing a severe patient no-show problem: 48.46% of scheduled appointments (2,423 of 5,000) go unattended. This repository documents the end-to-end Data Analytics contribution to the HealthConnect Experience Lab project, part of the AnalystLab Africa Experience Lab Internship Programme, covering Weeks 4 through 8.
 
----
+**Project question:** How can HealthConnect Clinic use data and AI to reduce missed appointments and improve the patient support experience?
 
-### Repository Structure
+## Project Journey
 
-* **`data/`**
-  * `HealthConnect_Appointment_Data.csv`: Raw, untouched appointment records (5,000 rows)[cite: 5]
-  * `HealthConnect_Data_Dictionary.xlsx`: Variable definitions and schema metadata[cite: 5]
-  * `HealthConnect_Appointment_Data_cleaned.csv`: Week 4 cleaned baseline (imputed and recoded)[cite: 4]
-  * `HealthConnect_Week5_Prepared.csv`: Week 5 audited analytical dataset with ordered bins
-  * `HealthConnect_Week6_Enriched.csv`: Week 6 enriched dataset with risk stratification tiers[cite: 7]
-  * `HealthConnect_Week7_Validation_Tables.xlsx`: Week 7 validation tables and sensitivity matrix[cite: 13]
-* **`notebooks/`**
-  * `week4_healthconnect_analysis.ipynb`: Week 4 exploratory data quality and hypothesis notebook[cite: 4]
-  * `week5_healthconnect_analytics.ipynb`: Week 5 comprehensive analysis, KPIs and visual dashboard[cite: 5]
-  * `week6_healthconnect_advanced_analytics.ipynb`: Week 6 advanced segmentation, risk tiers and simulations[cite: 7]
-  * `week7_healthconnect_testing_validation.ipynb`: Week 7 hypothesis testing, segment validation and sensitivity analysis[cite: 13]
-* **`visuals/`**
-  * `healthconnect_week5_dashboard_clean.png`: Week 5 4-panel operational analytics dashboard
-  * `healthconnect_week6_decision_support.png`: Week 6 advanced decision-support dashboard[cite: 7]
-  * `healthconnect_week7_validation_testing.png`: Week 7 testing, KPI validation and sensitivity dashboard[cite: 13]
-* **`docs/`**
-  * `week4_handoff.md`: Week 4 to Week 5 transition and decisions log[cite: 4]
-  * `week5_project_summary.md`: Week 5 execution report, cross-track notes and recommendations[cite: 5]
-  * `week6_project_summary.md`: Week 6 advanced analytics, cross-track integration and testing plan[cite: 7]
-  * `week7_project_summary.md`: Week 7 testing evidence, validation matrix and Week 8 readiness assessment[cite: 13]
-* **`README.md`**: Project documentation and milestone tracker[cite: 5, 7, 13]
+| Week | Stage | Output |
+|---|---|---|
+| Week 4 | Problem Understanding & Data Quality | Initial analysis document, dataset overview, 4 core KPI definitions |
+| Week 5 | Initial Implementation | Univariate EDA, operational dashboard (4-panel) |
+| Week 6 | Advanced Analytics & Integration | 2D risk matrix, composite risk tiers, policy simulations, decision-support dashboard |
+| Week 7 | Testing & Validation | Chi-square hypothesis testing, sensitivity analysis, subgroup stability checks |
+| Week 8 | Final Integration & Presentation | Executive decision-support package, cross-track integration, final video presentation |
 
----
+## Repository Structure
+data/
 
-## Project Execution and Milestone Progress
+├── HealthConnect_Appointment_Data.csv # Raw source data (5,000 rows, 18 columns)
 
-### Week 4: Problem Formulation and Data Hygiene
-* **Data Scale:** 5,000 appointment records representing 1,696 unique adult patients (48.5% No-Show, 46.3% Attended, 5.3% Cancelled)[cite: 1, 2].
-* **Hygiene and Validation:** Categorized 1,366 blank entries in `reminder_channel` as "Not Applicable"[cite: 1, 4]. Imputed minor missing values in distance (90 rows) and wait time (60 rows) with median values[cite: 1, 4]. Verified zero duplicate primary keys and checked bounds (`previous_no_shows <= previous_appointments`)[cite: 1, 2].
+├── HealthConnect_Data_Dictionary.xlsx # Metadata and attribute specifications
 
-### Week 5: Exploratory Analysis, KPI Development and Baseline Visualisation
-* **Controlled EDA:** Disproved the hypothesis that wait times drive attendance (mean wait times are identical at ~24.2 min)[cite: 2]. Showed that reminder lift is risk-dependent[cite: 1].
-* **KPI Quantifications:** Calculated Lead Time Band No-Show Rate (24.8% to 60.5%), Prior History Band No-Show Rate (43.5% to 68.8%), Distance Band No-Show Rate (46.5% to 57.8%), and Channel Performance (SMS outperforming at 45.8%)[cite: 1, 2].
+├── HealthConnect_Appointment_Data_cleaned.csv # Week 4 cleaned baseline
 
-### Week 6: Advanced Analytics, Decision Support and Cross-Track Integration
-* **2D Compounding Risk Matrix:** Demonstrated that no-show probability reaches 81.0% when bookings made >30 days out intersect with patients having 3+ prior misses[cite: 1].
-* **Composite Risk Stratification (Tiers 1–4):** Mapped clinic population into 4 actionable risk profiles; proved that reminder lift is concentrated in Tier 3 (High Risk: +6.85 pp)[cite: 1].
-* **Operational Capacity Simulations:** Modeled Policy A (14-day booking cap: saves 782 slots, reducing no-shows to 32.8%) and Combined Reform (saves 1,048 slots, reducing no-shows to 27.5%)[cite: 1].
-* **Cross-Track Integration:** Provided the Data Science track with `HealthConnect_Week6_Enriched.csv` containing interaction terms and confirmed pruning of `waiting_time_minutes`[cite: 2, 7].
+├── HealthConnect_Week5_Prepared.csv # Week 5 dataset with ordered categoricals
 
-### Week 7: Testing, Refinement and End-to-End Validation
-* **Hypothesis Testing:** Conducted Chi-Square tests of independence confirming that lead time ($p = 4.40 \times 10^{-68}$) and prior history ($p = 2.32 \times 10^{-17}$) are statistically significant causal drivers[cite: 1, 2]. Validated that reminder lift is statistically significant in Tier 3 ($p = 0.020$), but non-significant in Tier 1 and Tier 4[cite: 1].
-* **Segment Stability Testing:** Demonstrated that lead time decay is invariant across all clinical appointment types (General, Follow-up, Specialist, Diagnostic) and genders[cite: 2].
-* **Sensitivity Stress-Testing:** Tested Policy A across compliance levels (25%, 50%, 75%, 100%), proving that 391 slots are recovered even at conservative 50% adoption (lowering no-shows to 40.64%).
-* **Refined Policy Insight:** Advised clinic leadership to restrict two-way SMS reminders to Tier 2 and Tier 3 cohorts, preserving attendance gains while cutting notification messaging costs by ~60%[cite: 1].
-* **HC-POD Model Validation:** Verified that Data Science tuned classification models correctly incorporate lead time $\times$ history interaction terms, aligning with empirical risk tier baselines[cite: 13].
+├── HealthConnect_Week6_Enriched.csv # Primary dataset with composite risk_tier
 
----
+└── HealthConnect_Week7_Validation_Tables.xlsx # Sensitivity matrix and segment cross-tabs
 
-## Actionable Business Recommendations
 
-1. **Enact a 14-Day Rolling Booking Window:** Restrict open advance scheduling or require mandatory 48-hour digital confirmations for distant appointments to eliminate the 60.5% default rate on long-lead bookings[cite: 1, 2].
-2. **Deploy Selective Algorithmic Overbooking:** Apply double-booking buffers exclusively to slots reserved by Tier 3 and Tier 4 patients (≥2 prior misses) to protect provider utilization without overburdening clinical staff[cite: 1].
-3. **Route Long-Distance Patients to Telehealth:** Automatically divert routine follow-up consultations to virtual care for patients residing >20 km away to address the 57.8% transit friction barrier[cite: 1, 2].
-4. **Target Automated Two-Way SMS:** Concentrate reminder budgets on Tier 2 and Tier 3 cohorts using SMS with interactive "Confirm / Reschedule" reply triggers[cite: 2].
+notebook/[2 notebooks]
 
----
+├── week4_healthconnect_analysis.ipynb # Data hygiene, initial hypotheses
 
-## Tools and Technologies
-* **Analysis and Data Pipeline:** Python 3 (Pandas, NumPy, SciPy)[cite: 13]
-* **Visualisation and Plotting:** Matplotlib, Seaborn[cite: 13]
-* **Target BI Platform:** Power BI / Tableau[cite: 13]
-* **Version Control and Management:** Git, GitHub[cite: 13]* Git, GitHub[cite: 7]
+├── week5_healthconnect_analytics.ipynb # EDA, 4 core KPIs, initial dashboard
+
+├── week6_healthconnect_advanced_analytics.ipynb # Risk matrix, composite tiers, policy sims
+
+├── week7_healthconnect_testing_validation.ipynb # Chi-square testing, sensitivity analysis
+
+└── week8_healthconnect_final.ipynb # Final consolidated report
+
+
+visuals/
+├── healthconnect_week5_dashboard_clean.png
+
+├── healthconnect_week6_decision_support.png # Final decision-support dashboard
+
+└── healthconnect_week7_validation_testing.png
+
+
+docs/
+├── week4_initial_analysis_document.md
+
+
+├── week5_project_summary.md
+
+├── week6_project_summary.md
+
+├── week7_project_summary.md
+
+└── week8_healthconnect_final_report.md # Final analytics and decision support package
+
+
+
+## Key Findings
+
+- **Booking lead time** is the strongest behavioral driver of no-shows. Rates climb from 24.84% (0 to 3 days out) to 60.49% (31 to 60 days out).
+- **Prior no-show history** compounds risk, rising from 43.51% (no history) to 68.82% (3+ prior misses).
+- **Distance to clinic** is a non-linear barrier: flat under 20km, then surging past it.
+- **Reminders only work for one risk segment.** There's a statistically significant lift only for Tier 3 (High Risk) patients (p = 0.020), with no measurable effect for Tiers 1, 2, or 4.
+- **Combined policy reform** (14-day booking cap plus targeted overbooking) projects reclaiming 1,048 patient slots, cutting the no-show rate from 48.46% to 27.50%.
+
+## Methodology Notes
+
+- Cancellations (5.26% of records) are treated as administrative releases rather than lost capacity, and are excluded from the no-show definition.
+- `waiting_time_minutes` was tested and pruned from attendance analysis due to no correlation with outcome.
+- Missing values in `distance_to_clinic_km` and `waiting_time_minutes` are median-imputed with `_was_missing` boolean flags.
+
+## Tools
+
+Python, Pandas, Seaborn/Matplotlib, SciPy (chi-square testing)
+
+## Author
+
+Brandon, Data Analytics Track, AnalystLab Africa Experience Lab
