@@ -32,17 +32,7 @@ data/
 └── HealthConnect_Week7_Validation_Tables.xlsx # Sensitivity matrix and segment cross-tabs
 
 
-notebook/[2 notebooks]
-
-├── week4_healthconnect_analysis.ipynb # Data hygiene, initial hypotheses
-
-├── week5_healthconnect_analytics.ipynb # EDA, 4 core KPIs, initial dashboard
-
-├── week6_healthconnect_advanced_analytics.ipynb # Risk matrix, composite tiers, policy sims
-
-├── week7_healthconnect_testing_validation.ipynb # Chi-square testing, sensitivity analysis
-
-└── week8_healthconnect_final.ipynb # Final consolidated report
+notebook/[2 notebooks] healthconnect_analysis.ipynb and Documentation.ipynb
 
 
 visuals/
